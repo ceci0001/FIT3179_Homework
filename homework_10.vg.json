@@ -1,12 +1,25 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json", 
+  "title": "Comparison of Argricultural and Forested Area", 
   "width": 800, 
   "height": 400, 
   "data": {
     "url": "world_clean.csv", 
     "format": {"parse": {"Forested_Area": "number", 
                         "Agricultural_Land": "number", 
-                        "Land_Area_Km2": "number"}}
+                        "Land_Area_Km2": "number", 
+                        "Country": "string"}}
+}, 
+"encoding": {
+  "x": {"field": "Forested_Area", "type": "quantitative", "title": "Forested Area"},
+  "y": {"field": "Agricultural_Land", "type": "quantitative", "title": "Agricultural Land"}, 
+  "color": {"field": "Land_Area_Km2", "type": "quantitative", "title": "Land Area (In km^2)", 
+    "scale": {
+      "type": "threshold",
+      "domain": [250000, 750000, 1000000, 1500000, 2000000],
+      "scheme": "magma"
+      }
+    }
 }, 
 "params": [
     {
@@ -48,23 +61,37 @@
     {"filter": "datum.Forested_Area > Forested_Area_Above"}, 
     {"filter": "datum.Agricultural_Land > Agricultural_Land_Above"}
 ], 
-  "mark": "circle",
-  "encoding": {
-    "x": {"field": "Forested_Area", "type": "quantitative", "title": "Forested Area"},
-    "y": {"field": "Agricultural_Land", "type": "quantitative", "title": "Agricultural Land"}, 
-    "color": {"field": "Land_Area_Km2", "type": "quantitative", "title": "Land Area (In km^2)", 
-      "scale": {
-        "type": "threshold",
-        "domain": [250000, 750000, 1000000, 1500000, 2000000],
-        "scheme": "magma"
-        }
+"layer": [
+  {
+    "mark": "circle"}, 
+  {
+    "mark": {
+      "type": "text",
+      "align": "left",
+      "baseline": "middle",
+      "dx": 5,
+      "fontSize": 10,
+      "fontStyle": "italic"
+    },
+    "encoding": {
+      "text": {"field": "Country", "type": "nominal"},
+      "color": {"value": "black"},
+      "opacity": {
+        "condition": {
+          "test": "datum['Country'] == 'China' || datum['Country'] == 'Singapore' || datum['Country'] == 'Australia' || datum['Country'] == 'New Zealand' || datum['Country'] == 'Malaysia' || datum['Country'] == 'Peru' ||  datum['Country'] == 'United States of America'",
+          "value": 1
+        },
+        "value": 0
       }, 
-    "tooltip": [
-        {"field": "Country", "type": "nominal", "title":
-        "Country"},
-        {"field": "Forested_Area", "type": "quantitative", "title": "Forested Area (In %)"}, 
-        {"field": "Agricultural_Land", "type": "quantitative", "title": "Agricultural Land (In %)"}, 
-        {"field": "Land_Area_Km2", "type": "quantitative", "title": "Land Area (In km^2)"}
-]
+      "tooltip": [
+          {"field": "Country", "type": "nominal", "title":
+          "Country"},
+          {"field": "Forested_Area", "type": "quantitative", "title": "Forested Area (In %)"}, 
+          {"field": "Agricultural_Land", "type": "quantitative", "title": "Agricultural Land (In %)"}, 
+          {"field": "Land_Area_Km2", "type": "quantitative", "title": "Land Area (In km^2)"}
+      ]
+    }
   }
+]
 }
+  
