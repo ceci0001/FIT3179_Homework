@@ -19,7 +19,7 @@
       "domain": [250000, 750000, 1000000, 1500000, 2000000],
       "scheme": "magma"
       }, 
-      "legend": {"title": "Total Land Area (In km^2"}
+      "legend": {"title": "Total Land Area (In km^2)"}
     }
 }, 
 "params": [
