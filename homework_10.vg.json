@@ -18,7 +18,8 @@
       "type": "threshold",
       "domain": [250000, 750000, 1000000, 1500000, 2000000],
       "scheme": "magma"
-      }
+      }, 
+      "legend": {"title": "Total Land Area (In km^2"}
     }
 }, 
 "params": [
@@ -30,7 +31,7 @@
         "min": 0,
         "max": 18000000,
         "step": 100000,
-        "name": "Minimum Land Area (In km^2): "
+        "name": "Minimum Total Land Area (In km^2): "
       }
     }, 
     {
@@ -88,7 +89,7 @@
           "Country"},
           {"field": "Forested_Area", "type": "quantitative", "title": "Forested Area (In %)"}, 
           {"field": "Agricultural_Land", "type": "quantitative", "title": "Agricultural Land (In %)"}, 
-          {"field": "Land_Area_Km2", "type": "quantitative", "title": "Land Area (In km^2)"}
+          {"field": "Land_Area_Km2", "type": "quantitative", "title": "Total Land Area (In km^2)"}
       ]
     }
   }
